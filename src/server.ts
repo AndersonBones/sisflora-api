@@ -4,7 +4,7 @@ import { MainRoutes } from "./routes/routes";
 
 const server = fastify()
 
-server.register(MainRoutes,{prefix:"/sisflora"} )
+server.register(MainRoutes,{prefix:"fs/biomassa/sisflora"} )
 
 server.listen({port:3333}, (err, addres)=>{
     if(err){
