@@ -1,35 +1,35 @@
-export interface Gf{
+export interface SisfloraURL{
     url:string
 }
 
 
 export interface FormGF{
-    numero:string,
-    status:string
-    emissao:Date | null
-    vencimento:Date |  null
+    GfNumero:string,
+    Status:string
+    DataEmissao:Date | null
+    DataVencimento:Date |  null
 }
 
 export interface FormRemetente{
-    cc_sema:string
-    ctf:string
-    nome:string
-    cpf_cnpj:string
-    municipio_uf:string
+    CcSema:string
+    Ctf:string
+    Nome:string
+    Cpf_Cnpj:string
+    Municipio_Uf:string
 
 }
 
 export interface FormDestinatario{
-    cc_sema:string
-    ctf:string
-    nome:string
-    cpf_cnpj:string
-    municipio_uf:string
+    CcSema:string
+    Ctf:string
+    Nome:string
+    Cpf_Cnpj:string
+    Municipio_Uf:string
 }
 
 export interface GF3{
-    gf3:FormGF,
-    remetente:FormRemetente
-    destinatario:FormDestinatario
+    GF3:FormGF,
+    Remetente:FormRemetente
+    Destinatario:FormDestinatario
 
 }

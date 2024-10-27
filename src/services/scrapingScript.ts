@@ -26,20 +26,20 @@ const get_remetente_script = `
     const municipio_value = form.children[4].children[1].children[0].children[1].textContent
 
 
-    const rementente = {
-        cc_sema:String(ccsema_value),
-        ctf:String(ctf_value),
-        nome:String(nome_value),
-        cpf_cnpj:String(cnpj_cpf_value),
-        municipio_uf:String(municipio_value)
+    const Rementente = {
+        CcSema:String(ccsema_value),
+        Ctf:String(ctf_value),
+        Nome:String(nome_value),
+        Cpf_Cnpj:String(cnpj_cpf_value),
+        Municipio_Uf:String(municipio_value)
     }
 
 
-    if(!rementente){
+    if(!Rementente){
         return null
     }
 
-    return rementente
+    return Rementente
 `
 
 const get_gf_script = `
@@ -68,20 +68,19 @@ const get_gf_script = `
     const emissao_dateParts = gf_emissao_value.split('/')
     const vencimento_dateParts = gf_vencimento_value.split('/')
 
-    const gf3 = {
-        emissao: new Date(emissao_dateParts[2], emissao_dateParts[1]-1, emissao_dateParts[0]),
-        numero:String(gf_num),
-        status:String(gf_status_value),
-        vencimento:new Date(vencimento_dateParts[2], vencimento_dateParts[1]-1, vencimento_dateParts[0])
+    const GF3 = {
+        GfNumero:String(gf_num),
+        DataEmissao: new Date(emissao_dateParts[2], emissao_dateParts[1]-1, emissao_dateParts[0]),
+        Status:String(gf_status_value),
+        DataVencimento:new Date(vencimento_dateParts[2], vencimento_dateParts[1]-1, vencimento_dateParts[0])
     }
 
     
-
-    if (!gf3) {
+    if (!GF3) {
         return null
     }
 
-    return gf3
+    return GF3
 `
 
 
@@ -116,20 +115,20 @@ const get_destinatario_script = `
     const municipio_value = form.children[5].children[0].children[0].children[1].textContent
 
 
-    const destinatario = {
-        cc_sema:String(ccsema_value),
-        ctf:String(ctf_value),
-        nome:String(nome_value),
-        cpf_cnpj:String(cnpj_cpf_value),
-        municipio_uf:String(municipio_value)
+    const Destinatario = {
+        CcSema:String(ccsema_value),
+        Ctf:String(ctf_value),
+        Nome:String(nome_value),
+        Cpf_Cnpj:String(cnpj_cpf_value),
+        Municipio_Uf:String(municipio_value)
     }
 
 
-    if(!destinatario){
+    if(!Destinatario){
         return null
     }
 
-    return destinatario
+    return Destinatario
 
 `
 

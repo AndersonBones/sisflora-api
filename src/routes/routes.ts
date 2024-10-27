@@ -1,5 +1,5 @@
 import {FastifyInstance} from "fastify";
-import { Gf } from "../types/types";
+import { SisfloraURL } from "../types/types";
 import { scraper } from "../controllers/scraper";
 import utils from "../utils"
 
@@ -7,7 +7,7 @@ import utils from "../utils"
 export const MainRoutes = async(fastify: FastifyInstance)=>{
     const {isValidHttpUrl} = utils
 
-    fastify.post<{Body:Gf}>('/read-gf3', async (req, reply) => {
+    fastify.post<{Body:SisfloraURL}>('/read-gf3', async (req, reply) => {
         try {
 
             const {url} = req.body
@@ -26,8 +26,13 @@ export const MainRoutes = async(fastify: FastifyInstance)=>{
             
             
         } catch (error) {
-            reply.status(400).send({error:"Instabilidade no retorno de dados do Scraper."})
+            reply.status(400).send({error})
         }
+    }),
+
+
+    fastify.get('/test', async(req, reply)=>{
+        reply.status(200).send({msg:"hello world!"})
     })
 
 }

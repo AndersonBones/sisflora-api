@@ -9,41 +9,66 @@ import scrapingScript from '../services/scrapingScript'
 export async function scraper(url:string) {
     
     const options = new firefox.Options()
-    const userdata = "C:/Users/Anderson/AppData/Roaming/Mozilla/Firefox/Profiles"
-
-    options.setProfile(userdata)
+    const userDataDir = "C:/Users/Anderson/AppData/Roaming/Mozilla/Firefox/Profiles"
+   
+    options.setProfile(userDataDir)
     options.addArguments('--headless')
 
-    let driver = await new Builder().forBrowser(Browser.FIREFOX).setFirefoxOptions(options).build()
+    const {
+        get_gf_script, 
+        get_remetente_script,
+        get_destinatario_script
+    } = scrapingScript
 
-    const {get_gf_script, get_remetente_script,get_destinatario_script} = scrapingScript
 
     try {
+        let driver = await new Builder().forBrowser(Browser.FIREFOX).setFirefoxOptions(options).build()
+        
         await driver.get(url)
         
+        return new Promise((resolve, reject)=>{
+
+            let i = 0
+            const timer = setInterval(async() => {
+                i+=1
+                const GF3:FormGF = await driver.executeScript(get_gf_script)
+                const Rementente:FormRemetente = await driver.executeScript(get_remetente_script)
+                const Destinatario:FormDestinatario = await driver.executeScript(get_destinatario_script)
+    
+                
+                if(!Object.values(GF3).includes(null) && !Object.values(Rementente).includes(null) && !Object.values(Destinatario).includes(null)){
+                    
+                    resolve({
+                        GF3,
+                        Rementente,
+                        Destinatario
+                    })
+                    
+                    clearInterval(timer)
+    
+                }else{
+                    reject({
+                        GF3,
+                        Rementente,
+                        Destinatario
+                    })
+                    clearInterval(timer)
+                }
+
+                if(i == 60000){
+                    reject({error:"Tempo de limite execução atingido."})
+                    clearInterval(timer)
+                }
+
+            }, 500);    
+        })
         
-        while (true){
-            const gf3:FormGF = await driver.executeScript(get_gf_script)
-            const rementente:FormRemetente = await driver.executeScript(get_remetente_script)
-            const destinatario:FormDestinatario = await driver.executeScript(get_destinatario_script)
-
-            if(rementente.municipio_uf && gf3.numero && destinatario.cc_sema){
-
-                return {gf3, rementente, destinatario}
-            }
-           
-        }
-
-
         
     } catch(e) {
         console.log(e)
 
     }
 
-
-
-
-};
+}
 
 

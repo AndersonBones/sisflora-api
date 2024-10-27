@@ -1,13 +1,4 @@
-import moment from 'moment'
 
-const getDate = (date:string)=>{
-    try {
-        
-        return moment(date, "DD/MM/YYYY").toDate()
-    } catch (error) {
-        return null
-    }
-}
 
 
 const isValidHttpUrl = (url:string)=>{
@@ -20,4 +11,4 @@ const isValidHttpUrl = (url:string)=>{
 }
 
 
-export default {getDate, isValidHttpUrl}
+export default { isValidHttpUrl}
