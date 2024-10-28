@@ -5,28 +5,33 @@ const get_remetente_script = `
         return null
     }
 
+    const form = document.getElementsByName("formGerenciar")[0].children[1] // form onde esta os dados do remetente
 
-    const form = document.getElementsByName("formGerenciar")[0].children[1]
-
-    const rem_label = form.children[0].children[0].textContent
-
-    const ccsema_label = form.children[1].children[0].children[0].children[0].textContent
-    const ccsema_value = form.children[1].children[0].children[0].children[1].textContent
-
-    const ctf_label = form.children[2].children[0].children[0].children[0].textContent
-    const ctf_value = form.children[2].children[0].children[0].children[1].textContent
-
-    const nome_label = form.children[3].children[0].children[0].children[0].textContent
-    const nome_value = form.children[3].children[0].children[0].children[1].textContent
-
-    const cnpj_cpf_label = form.children[4].children[0].children[0].children[0].textContent
-    const cnpj_cpf_value = form.children[4].children[0].children[0].children[1].textContent
-
-    const municipio_label = form.children[4].children[1].children[0].children[0].textContent
-    const municipio_value = form.children[4].children[1].children[0].children[1].textContent
+    const rem_label = form.children[0].children[0].textContent // titulo do form onde esta os dados do remetente
 
 
-    const Rementente = {
+    // CC SEMA - REMETENTE
+    const ccsema_label = form.children[1].children[0].children[0].children[0].textContent // CC SEMA label
+    const ccsema_value = form.children[1].children[0].children[0].children[1].textContent // Numero do CC SEMA
+
+    // CTF - REMETENTE
+    const ctf_label = form.children[2].children[0].children[0].children[0].textContent // CTF label 
+    const ctf_value = form.children[2].children[0].children[0].children[1].textContent // Numero do CTF
+
+    // NOME - REMETENTE
+    const nome_label = form.children[3].children[0].children[0].children[0].textContent // NOME label
+    const nome_value = form.children[3].children[0].children[0].children[1].textContent // NOME do Remetente
+
+    // CPF/CNPJ - REMETENTE
+    const cnpj_cpf_label = form.children[4].children[0].children[0].children[0].textContent // CPF/CNPJ label
+    const cnpj_cpf_value = form.children[4].children[0].children[0].children[1].textContent // CPF/CNPJ do Remetente
+
+    // MUNICIO/UF - REMETENTE
+    const municipio_label = form.children[4].children[1].children[0].children[0].textContent // MUNICIPIO/UF label
+    const municipio_value = form.children[4].children[1].children[0].children[1].textContent // MUNICIPIO/UF do Remetente
+
+
+    const Remetente = {
         CcSema:String(ccsema_value),
         Ctf:String(ctf_value),
         Nome:String(nome_value),
@@ -35,11 +40,11 @@ const get_remetente_script = `
     }
 
 
-    if(!Rementente){
+    if(!Remetente){
         return null
     }
 
-    return Rementente
+    return Remetente
 `
 
 const get_gf_script = `

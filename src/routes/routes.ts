@@ -1,13 +1,13 @@
 import {FastifyInstance} from "fastify";
 import { SisfloraURL } from "../types/types";
-import { scraper } from "../controllers/scraper";
+import { scrapingByUrl } from "../controllers/scrapingByUrl";
 import utils from "../utils"
 
 
 export const MainRoutes = async(fastify: FastifyInstance)=>{
     const {isValidHttpUrl} = utils
 
-    fastify.post<{Body:SisfloraURL}>('/read-gf3', async (req, reply) => {
+    fastify.post<{Body:SisfloraURL}>('/read-gf3/url', async (req, reply) => {
         try {
 
             const {url} = req.body
@@ -16,10 +16,10 @@ export const MainRoutes = async(fastify: FastifyInstance)=>{
                 reply.status(400).send({error:"Url Inválida."})
             }
 
-            const data = await scraper(url)
+            const data = await scrapingByUrl(url)
 
             if(data){
-                reply.status(200).send({siflora:data})
+                reply.status(200).send({Siflora:data})
             }
 
             
@@ -33,6 +33,15 @@ export const MainRoutes = async(fastify: FastifyInstance)=>{
 
     fastify.get('/test', async(req, reply)=>{
         reply.status(200).send({msg:"hello world!"})
+    })
+
+
+    fastify.post<{Body:SisfloraURL}>('/read-gf3/pdf', async(req, reply)=>{
+        try {
+            
+        } catch (error) {
+            reply.status(400).send({error})
+        }
     })
 
 }

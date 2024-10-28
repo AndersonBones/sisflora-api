@@ -6,7 +6,7 @@ import scrapingScript from '../services/scrapingScript'
 
 
 
-export async function scraper(url:string) {
+export async function scrapingByUrl(url:string) {
     
     const options = new firefox.Options()
     const userDataDir = "C:/Users/Anderson/AppData/Roaming/Mozilla/Firefox/Profiles"
@@ -32,15 +32,15 @@ export async function scraper(url:string) {
             const timer = setInterval(async() => {
                 i+=1
                 const GF3:FormGF = await driver.executeScript(get_gf_script)
-                const Rementente:FormRemetente = await driver.executeScript(get_remetente_script)
+                const Remetente:FormRemetente = await driver.executeScript(get_remetente_script)
                 const Destinatario:FormDestinatario = await driver.executeScript(get_destinatario_script)
     
                 
-                if(!Object.values(GF3).includes(null) && !Object.values(Rementente).includes(null) && !Object.values(Destinatario).includes(null)){
+                if(!Object.values(GF3).includes(null) && !Object.values(Remetente).includes(null) && !Object.values(Destinatario).includes(null)){
                     
                     resolve({
                         GF3,
-                        Rementente,
+                        Remetente,
                         Destinatario
                     })
                     
@@ -49,7 +49,7 @@ export async function scraper(url:string) {
                 }else{
                     reject({
                         GF3,
-                        Rementente,
+                        Remetente,
                         Destinatario
                     })
                     clearInterval(timer)
